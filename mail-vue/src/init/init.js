@@ -5,7 +5,6 @@ import {loginUserInfo} from "@/request/my.js";
 import {permsToRouter} from "@/perm/perm.js";
 import router from "@/router";
 import {websiteConfig} from "@/request/setting.js";
-import i18n from "@/i18n/index.js";
 
 export async function init() {
     document.title = '\u200B'
@@ -15,13 +14,8 @@ export async function init() {
     const accountStore = useAccountStore();
 
     const token = localStorage.getItem('token');
-    if (!settingStore.lang) {
-        let lang = navigator.language.split('-')[0]
-        lang = lang === 'zh' ? lang : 'en'
-        settingStore.lang = lang
-    }
 
-    i18n.global.locale.value = settingStore.lang
+    settingStore.lang = 'en'
 
     let setting = null;
 

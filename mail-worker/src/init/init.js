@@ -258,7 +258,7 @@ const dbInit = {
       )
     `).run();
 
-		// 添加不区分大小写的唯一索引
+		// Add case-insensitive unique index
 		try {
 			await c.env.db.prepare(`
 				CREATE UNIQUE INDEX IF NOT EXISTS idx_setting_code ON reg_key(code COLLATE NOCASE)
@@ -376,7 +376,7 @@ const dbInit = {
 	},
 
 	async v1_1DB(c) {
-		// 添加字段
+		// Add columns
 		const ADD_COLUMN_SQL_LIST = [
 			`ALTER TABLE email ADD COLUMN type INTEGER NOT NULL DEFAULT 0;`,
 			`ALTER TABLE email ADD COLUMN status INTEGER NOT NULL DEFAULT 0;`,

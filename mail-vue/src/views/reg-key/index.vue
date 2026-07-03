@@ -195,22 +195,10 @@ function formatUserCreateTime(regKey) {
   const currentYear = dayjs().year();
   const expireYear = createTime.year();
 
-  if (settingStore.lang === 'en') {
-
-    if (expireYear === currentYear) {
-      return createTime.format('MMM D, HH:mm');
-    } else {
-      return createTime.format('MMM D, YYYY HH:mm');
-    }
-
+  if (expireYear === currentYear) {
+    return createTime.format('MMM D, HH:mm');
   } else {
-
-    if (expireYear === currentYear) {
-      return createTime.format('M/D HH:mm');
-    } else {
-      return createTime.format('YYYY/M/D HH:mm');
-    }
-
+    return createTime.format('MMM D, YYYY HH:mm');
   }
 
 }
@@ -220,19 +208,9 @@ function formatExpireTime(expireTime) {
   const currentYear = dayjs().year();
   const expireYear = expireDate.year();
 
-  if (settingStore.lang === 'en') {
-
-    return expireYear === currentYear
-        ? expireDate.format('MMM D')
-        : expireDate.format('MMM D, YYYY');
-
-  } else {
-
-    return expireYear === currentYear
-        ? expireDate.format('M/D')
-        : expireDate.format('YYYY/M/D');
-
-  }
+  return expireYear === currentYear
+      ? expireDate.format('MMM D')
+      : expireDate.format('MMM D, YYYY');
 }
 
 function refresh() {
