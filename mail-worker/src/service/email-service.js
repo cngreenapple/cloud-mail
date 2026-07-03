@@ -189,7 +189,7 @@ const emailService = {
 				throw new BizError(t('bannedSend'), 403);
 			}
 
-			//发件被禁用
+			//Send banned (internal only)
 			if (roleRow.sendType === 'internal' && !allInternal) {
 				throw new BizError(t('onlyInternalSend'), 403);
 			}
