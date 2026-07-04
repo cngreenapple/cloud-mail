@@ -1,4 +1,4 @@
-import settingService from '../service/setting-service';
+﻿import settingService from '../service/setting-service';
 import emailUtils from '../utils/email-utils';
 import {emailConst} from "../const/entity-const";
 
@@ -76,7 +76,7 @@ const dbInit = {
 		try {
 			await c.env.db.prepare(`UPDATE setting SET auto_refresh = 5 WHERE auto_refresh = 1;`).run();
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 	},
 
@@ -86,7 +86,7 @@ const dbInit = {
 				c.env.db.prepare(`ALTER TABLE account ADD COLUMN sort INTEGER NOT NULL DEFAULT 0;`)
 			]);
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 	},
 
@@ -96,7 +96,7 @@ const dbInit = {
 				c.env.db.prepare(`ALTER TABLE setting RENAME COLUMN auto_refresh_time TO auto_refresh;`)
 			]);
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 	},
 
@@ -104,7 +104,7 @@ const dbInit = {
 		try {
 			await c.env.db.prepare(`ALTER TABLE account ADD COLUMN all_receive INTEGER NOT NULL DEFAULT 0;`).run();
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 	},
 
@@ -113,7 +113,7 @@ const dbInit = {
 		try {
 			await c.env.db.prepare(`ALTER TABLE setting ADD COLUMN email_prefix_filter text NOT NULL DEFAULT '';`).run();
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 
 		try {
@@ -122,7 +122,7 @@ const dbInit = {
 				c.env.db.prepare(`UPDATE email SET unread = 1;`)
 			]);
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 
 	},
@@ -145,13 +145,13 @@ const dbInit = {
 				)
 			`).run();
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 
 		try {
 			await c.env.db.prepare(`ALTER TABLE setting ADD COLUMN min_email_prefix INTEGER NOT NULL DEFAULT 1;`).run();
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 
 	},
@@ -165,13 +165,13 @@ const dbInit = {
 				c.env.db.prepare(`ALTER TABLE setting ADD COLUMN tg_msg_from TEXT NOT NULL DEFAULT 'only-name';`)
 			]);
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 
 		try {
 			await c.env.db.prepare(`ALTER TABLE setting ADD COLUMN tg_msg_text TEXT NOT NULL DEFAULT 'show';`).run();
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 
 	},
@@ -187,7 +187,7 @@ const dbInit = {
 				c.env.db.prepare(`DELETE FROM perm WHERE perm_key = 'setting:clean'`)
 			]);
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 	},
 
@@ -195,7 +195,7 @@ const dbInit = {
 		try {
 			await c.env.db.prepare(`ALTER TABLE setting ADD COLUMN login_domain INTEGER NOT NULL DEFAULT 0;`).run();
 		} catch (e) {
-			console.warn(`跳过字段：${e.message}`);
+			console.warn(`Skip: ${e.message}`);
 		}
 	},
 
@@ -232,7 +232,7 @@ const dbInit = {
 			try {
 				await c.env.db.prepare(sql).run();
 			} catch (e) {
-				console.warn(`跳过字段：${e.message}`);
+				console.warn(`Skip: ${e.message}`);
 			}
 		});
 
@@ -257,7 +257,7 @@ const dbInit = {
 		try {
 			await c.env.db.prepare(`ALTER TABLE role ADD COLUMN avail_domain TEXT NOT NULL DEFAULT ''`).run();
 		} catch (e) {
-			console.warn(`跳过字段添加：${e.message}`);
+			console.warn(`Skip field: ${e.message}`);
 		}
 	},
 
@@ -280,7 +280,7 @@ const dbInit = {
 				CREATE UNIQUE INDEX IF NOT EXISTS idx_setting_code ON reg_key(code COLLATE NOCASE)
 			`).run();
 		} catch (e) {
-			console.warn(`跳过创建索引：${e.message}`);
+			console.warn(`Skip index: ${e.message}`);
 		}
 
 
@@ -292,7 +292,7 @@ const dbInit = {
         (35,'Add Code', 'reg-key:add', 33, 2, 1),
         (36,'Delete Code', 'reg-key:delete', 33, 2, 2)`).run();
 		} catch (e) {
-			console.warn(`跳过数据：${e.message}`);
+			console.warn(`Skip data: ${e.message}`);
 		}
 
 		const ADD_COLUMN_SQL_LIST = [
@@ -306,7 +306,7 @@ const dbInit = {
 			try {
 				await c.env.db.prepare(sql).run();
 			} catch (e) {
-				console.warn(`跳过字段添加：${e.message}`);
+				console.warn(`Skip field: ${e.message}`);
 			}
 		});
 
@@ -334,7 +334,7 @@ const dbInit = {
 			try {
 				await c.env.db.prepare(sql).run();
 			} catch (e) {
-				console.warn(`跳过字段添加：${e.message}`);
+				console.warn(`Skip field: ${e.message}`);
 			}
 		});
 
@@ -371,7 +371,7 @@ const dbInit = {
 			try {
 				await c.env.db.prepare(sql).run();
 			} catch (e) {
-				console.warn(`跳过字段添加：${e.message}`);
+				console.warn(`Skip field: ${e.message}`);
 			}
 		});
 
@@ -386,7 +386,7 @@ const dbInit = {
         (31,'Analytics', NULL, 0, 1, 2.1),
         (32,'View Data', 'analysis:query', 31, 2, 1)`).run();
 		} catch (e) {
-			console.warn(`跳过数据：${e.message}`);
+			console.warn(`Skip data: ${e.message}`);
 		}
 
 	},
@@ -423,7 +423,7 @@ const dbInit = {
 			try {
 				await c.env.db.prepare(sql).run();
 			} catch (e) {
-				console.warn(`跳过字段添加：${e.message}`);
+				console.warn(`Skip field: ${e.message}`);
 			}
 		});
 

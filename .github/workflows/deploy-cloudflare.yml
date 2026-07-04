@@ -237,7 +237,7 @@ jobs:
             echo "::add-mask::$WORKER_URL"
           fi
           
-          echo "worker_url=$WORKER_URL" >> $GITHUB_OUTPUT
+          echo "worker_url=${WORKER_URL}" >> $GITHUB_OUTPUT
           echo "✅ Setup completed."
 
       - name: ♻️ 初始化数据库 / Initialize database

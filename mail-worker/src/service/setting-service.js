@@ -131,11 +131,11 @@ const settingService = {
 		});
 
 		if (Array.isArray(params.emailPrefixFilter)) {
-			params.emailPrefixFilter = params.emailPrefixFilter + '';
+			params.emailPrefixFilter = params.emailPrefixFilter.join(',');
 		}
 
 		if (Array.isArray(params.aiCodeFilter)) {
-			params.aiCodeFilter = params.aiCodeFilter + '';
+			params.aiCodeFilter = params.aiCodeFilter.join(',');
 		}
 
 		params.resendTokens = JSON.stringify(resendTokens);

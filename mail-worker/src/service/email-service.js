@@ -18,7 +18,7 @@ import starService from './star-service';
 import dayjs from 'dayjs';
 import kvConst from '../const/kv-const';
 import { t } from '../i18n/i18n'
-import domainUtils from '../utils/domain-uitls';
+import domainUtils from '../utils/domain-utils';
 import account from "../entity/account";
 import { att } from '../entity/att';
 import telegramService from './telegram-service';
@@ -508,10 +508,14 @@ const emailService = {
 		}
 
 		const bytes = new Uint8Array(arrayBuffer);
+		const CHUNK_SIZE = 0x8000;
 		let binary = '';
 
-		for (let i = 0; i < bytes.length; i += 0x8000) {
-			binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+		for (let i = 0; i < bytes.length; i += CHUNK_SIZE) {
+			const chunk = bytes.subarray(i, i + CHUNK_SIZE);
+			for (let j = 0; j < chunk.length; j++) {
+				binary += String.fromCharCode(chunk[j]);
+			}
 		}
 
 		return btoa(binary);
